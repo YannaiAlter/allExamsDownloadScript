@@ -3,6 +3,9 @@ var coursesTable = tables[4];
 var allCourses = coursesTable.getElementsByTagName("tr");
 var linksArray =[];
 var courseNumbers=[];
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 function getSourceAsDOM(url)
 {
     xmlhttp=new XMLHttpRequest();
@@ -28,8 +31,11 @@ for(var a =1; a<allCourses.length;a++) // looping all courses and searching for 
     }
 }
 var a;
-for(var i=0;i<linksArray.length;i++)
-{
+
+var i = 1;                     //  set your counter to 1
+
+function myLoop () {           //  create a loop function
+   setTimeout(function () {    //  call a 500ms setTimeout when the loop is called
      a = document.createElement('a');
     a.setAttribute('href',linksArray[i]);
     a.setAttribute('download',courseNumbers[i]);
@@ -37,5 +43,10 @@ for(var i=0;i<linksArray.length;i++)
     // apend the anchor to the body
     // of course you can append it almost to any other dom element
     a.click();
-    await sleep(2000);
+      i++;                     //  increment the counter
+      if (i < linksArray.length) {            //  if the counter < 10, call the loop function
+         myLoop();             //  ..  again which will trigger another 
+      }                        //  ..  setTimeout()
+   }, 700)
 }
+myLoop();
