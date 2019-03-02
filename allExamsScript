@@ -33,7 +33,7 @@ for(var a =1; a<allCourses.length;a++) // looping all courses and searching for 
 }
 var a;
 
-var i = 1;                     //  set your counter to 1
+var i = 0;                     //  set your counter to 1
 
 function myLoop () {           //  create a loop function
    setTimeout(function () {    //  call a 500ms setTimeout when the loop is called
