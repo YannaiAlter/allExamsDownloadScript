@@ -1,8 +1,7 @@
 var tables = document.getElementsByTagName("table");
 var coursesTable = tables[4];
 var allCourses = coursesTable.getElementsByTagName("tr");
-var course1 = allCourses[10].getElementsByTagName("td")[1];
-var course1link = course1.getElementsByTagName("a")[0].href;
+
 function getSourceAsDOM(url)
 {
     xmlhttp=new XMLHttpRequest();
@@ -11,10 +10,17 @@ function getSourceAsDOM(url)
     parser=new DOMParser();
     return parser.parseFromString(xmlhttp.responseText,"text/html");      
 }
-course1link = course1link.replace("course_info.courseinfo?","course_info_2.ZIUNMATALA?");
-var course1page = getSourceAsDOM(course1link);
-for(var i=0; i<course1page.links.length;i++)
+
+for(var a =1; a<allCourses.length;a++) // looping all courses and searching for the "sheelon" and "mahberet-bhina"
 {
+    var course1 = allCourses[a].getElementsByTagName("td")[1];
+    var course1link = course1.getElementsByTagName("a")[0].href;
+    course1link = course1link.replace("course_info.courseinfo?","course_info_2.ZIUNMATALA?");
+    var course1page = getSourceAsDOM(course1link);
+
+    for(var i=0; i<course1page.links.length;i++)
+    {
     if(course1page.links[i].text == "שאלון אישי") console.log(course1page.links[i].href);
       if(course1page.links[i].text == "קובץ בחינה סרוק") console.log(course1page.links[i].href);
+    }
 }
