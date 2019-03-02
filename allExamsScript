@@ -2,6 +2,7 @@ var tables = document.getElementsByTagName("table");
 var coursesTable = tables[4];
 var allCourses = coursesTable.getElementsByTagName("tr");
 var linksArray =[];
+var courseNumbers=[];
 function getSourceAsDOM(url)
 {
     xmlhttp=new XMLHttpRequest();
@@ -14,6 +15,8 @@ function getSourceAsDOM(url)
 for(var a =1; a<allCourses.length;a++) // looping all courses and searching for the "sheelon" and "mahberet-bhina"
 {
     var course1 = allCourses[a].getElementsByTagName("td")[1];
+    courseNumbers.push(allCourses[a].getElementsByTagName("td")[8].innerText);
+    
     var course1link = course1.getElementsByTagName("a")[0].href;
     course1link = course1link.replace("course_info.courseinfo?","course_info_2.ZIUNMATALA?");
     var course1page = getSourceAsDOM(course1link);
@@ -24,15 +27,15 @@ for(var a =1; a<allCourses.length;a++) // looping all courses and searching for 
       if(course1page.links[i].text == "קובץ בחינה סרוק") linksArray.push(course1page.links[i].href);
     }
 }
-    console.log(linksArray);
+var a;
 for(var i=0;i<linksArray.length;i++)
 {
-
-    var a = document.createElement('a');
+     a = document.createElement('a');
     a.setAttribute('href',linksArray[i]);
-    a.setAttribute('download',"test");
+    a.setAttribute('download',courseNumbers[i]);
     a.innerHTML = "ddd";//why the hell did i do this?
     // apend the anchor to the body
     // of course you can append it almost to any other dom element
     a.click();
+    await sleep(2000);
 }
