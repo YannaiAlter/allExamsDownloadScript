@@ -1,3 +1,4 @@
+//Made by Yannai Alter
 var tables = document.getElementsByTagName("table");
 var coursesTable = tables[4];
 var allCourses = coursesTable.getElementsByTagName("tr");
