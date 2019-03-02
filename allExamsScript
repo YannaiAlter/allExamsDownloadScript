@@ -20,7 +20,7 @@ for(var a =1; a<allCourses.length;a++) // looping all courses and searching for 
 
     for(var i=0; i<course1page.links.length;i++)
     {
-    if(course1page.links[i].text == "שאלון אישי") console.log(course1page.links[i].href);
+    if(course1page.links[i].text == "שאלון אישי" || course1page.links[i].text == "קישור לשאלון") console.log(course1page.links[i].href);
       if(course1page.links[i].text == "קובץ בחינה סרוק") console.log(course1page.links[i].href);
     }
 }
